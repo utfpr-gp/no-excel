@@ -20,8 +20,17 @@ public class Transaction {
 	@ManyToOne
 	private Customer customer;
 	
-	public Transaction(){}
+	public Transaction(){
+		
+	}
 	
+	public Transaction(Date date, BigDecimal value, boolean operation, Customer customer) {
+		this.date = date;
+		this.value = value;
+		this.operation = operation;
+		this.customer = customer;
+	}
+
 	public long getId() {
 		return id;
 	}

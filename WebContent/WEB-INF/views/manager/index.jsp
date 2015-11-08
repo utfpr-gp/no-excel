@@ -2,7 +2,7 @@
 
 <jsp:include page="../includes/nav_user.jsp"/>
 
-<form method="get" action="transaction">
+<form method="post" action=<%= request.getContextPath() %>"/manager/transaction">
 <div class="container">
 	<div class="panel panel-primary">
     <div class="panel-heading">

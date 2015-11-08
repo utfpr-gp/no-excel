@@ -95,5 +95,10 @@ public class Customer extends Person {
 		}
 		return true;
 	}
+	
+	public static Customer findByRa(String ra){
+		CustomerService customer = new CustomerService();
+		return customer.getByProperty("login", ra);
+	}
 
 }
