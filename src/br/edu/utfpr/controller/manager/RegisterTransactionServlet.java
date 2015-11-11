@@ -40,6 +40,7 @@ public class RegisterTransactionServlet extends HttpServlet {
 		Transaction transaction = new Transaction(data,value, operation, customer);
 		
 		service.save(transaction);
+		
 		String address = "/WEB-INF/views/manager/index.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);

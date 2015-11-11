@@ -28,7 +28,7 @@ public class TransactionServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Passo aqui essa bosta");
+
 		String ra = request.getParameter("ra");
 		System.out.println("ra - > servelet" + ra);
 		CustomerService customer = new CustomerService();
