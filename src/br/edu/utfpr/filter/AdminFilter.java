@@ -29,7 +29,7 @@ import br.edu.utfpr.util.Role;
  * @author ronifabio
  *
  */
-@WebFilter(filterName = "AdminFilter", urlPatterns = {"/admin"} )
+@WebFilter(filterName = "AdminFilter", urlPatterns = {"/admin/*"} )
 public class AdminFilter implements Filter {
 
     /**
@@ -51,7 +51,8 @@ public class AdminFilter implements Filter {
 		 * Se estiver, apenas permite o acesso caso tenha o papel de admin.
 		 * Caso não seja, encaminha para a tela de login.
 		 * 
-		 */		
+		 */	
+		System.out.println("Passo pelo filtro");
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		User admin = (User)session.getAttribute(Constants.PERSON_KEY); 
 

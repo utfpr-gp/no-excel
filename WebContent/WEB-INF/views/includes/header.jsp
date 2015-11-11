@@ -18,8 +18,7 @@
     <link href="<%= request.getContextPath() %>/css/roboto.min.css" rel="stylesheet">
 
 	<link href="<%= request.getContextPath() %>/css/ripples.min.css" rel="stylesheet">
-
-    
+   
 
     <!-- Custom styles for this template -->
 

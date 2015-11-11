@@ -16,14 +16,10 @@
 
     <!-- Bootstrap core CSS -->
     <link href="${ctx}/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link href="${ctx}/css/material-fullpalette.min.css" rel="stylesheet">
 		
     <link href="${ctx}/css/roboto.min.css" rel="stylesheet">
 	
 	<link href="${ctx}/css/ripples.min.css" rel="stylesheet">
-	
-    <link href="${ctx}/css/material.min.css" rel="stylesheet">
     
     <!-- Custom styles for this template -->
     <link href="${ctx}/css/signin.css" rel="stylesheet">

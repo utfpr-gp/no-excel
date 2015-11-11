@@ -1,3 +1,7 @@
+body{
+	background-color: #000000;
+}
+
 .checkbox{
     float: left;
 }
@@ -72,4 +76,28 @@ html, body {
 .container .form-customer .value {width: 15%;}
 .container .form-customer .submit button {float: right; font-size: 20px;}
 .container .buttons {text-align: center;}
-.container .buttons button {font-size: 25px;
+.container .buttons button {font-size: 25px;}
+
+
+.navbar-noexcel{
+	background-color: #009688;
+	border-color:#009688;
+}
+.navbar-noexcel .navbar-brand{
+	color:#FFF;
+}
+.navbar-noexcel .navbar-brand:hover,.navbar-noexcel .navbar-brand:focus{
+	color:#fff;
+	background-color:transparent;
+}
+.navbar-noexcel .navbar-text{
+	color:#FFF;
+}
+.navbar-noexcel .navbar-nav>li>a{
+	color:#FFF;
+	font-weight: bold;
+}
+.navbar-noexcel .navbar-nav>li>a:hover,.navbar-noexcel .navbar-nav>li>a:focus{
+	color:#fff;
+	background-color:transparent;
+}
