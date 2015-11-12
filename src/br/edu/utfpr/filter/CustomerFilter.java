@@ -29,7 +29,7 @@ import br.edu.utfpr.util.Role;
  * @author ronifabio
  *
  */
-@WebFilter(filterName = "CustomerFilter", urlPatterns = {"/customer/*"} )
+@WebFilter(filterName = "CustomerFilter", urlPatterns = {"/customer"} )
 public class CustomerFilter implements Filter {
 
     /**

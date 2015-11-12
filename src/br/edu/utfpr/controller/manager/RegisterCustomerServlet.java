@@ -1,6 +1,7 @@
 package br.edu.utfpr.controller.manager;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
@@ -46,6 +47,7 @@ public class RegisterCustomerServlet extends HttpServlet {
 		mapParams.put("value", request.getParameter("value"));
 		mapParams.put("password", Crypto.encrypt(request.getParameter("password")));
 		mapParams.put("colleger", request.getParameter("colleger"));
+		mapParams.put("balance", request.getParameter("balance"));
 		
 		result = verifyParameters(mapParams);		
 		CustomerService customerService = new CustomerService();

@@ -1,5 +1,7 @@
 package br.edu.utfpr.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +18,7 @@ public class Customer extends Person {
 	private String type;
 	private Long value;
 	private String password;
-	private String colleger;	
+	private String colleger;
 	
 	public Customer(){
 		

@@ -27,7 +27,7 @@ import br.edu.utfpr.util.Role;
  * @author ronifabio
  *
  */
-@WebFilter(filterName = "ManagerFilter", urlPatterns = {"/manager/*"} )
+@WebFilter(filterName = "ManagerFilter", urlPatterns = {"/manager"} )
 public class ManagerFilter implements Filter {
 
     /**

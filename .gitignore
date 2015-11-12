@@ -17,4 +17,4 @@ local.properties
 .classpath
 .settings/
 .loadpath
-src/META-INF/persistence.xml
+/src/META-INF/persistence.xml
