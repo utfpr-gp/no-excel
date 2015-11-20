@@ -19,7 +19,6 @@
 
 	<link href="<%= request.getContextPath() %>/css/ripples.min.css" rel="stylesheet">
    
-
     <!-- Custom styles for this template -->
 
     <link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">

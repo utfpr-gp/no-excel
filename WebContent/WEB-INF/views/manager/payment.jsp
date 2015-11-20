@@ -1,7 +1,25 @@
+<%@page import="java.util.HashMap"%>
 <jsp:include page="../includes/header.jsp"/>
 <jsp:include page="../includes/nav_admin.jsp"/>
 
 <div class="container">
+	<div class="row">
+	  <%
+	  HashMap<String, String> msgs = (HashMap)request.getAttribute("msg");
+	  
+	  if(msgs != null){
+	    
+		  for(String key : msgs.keySet()){
+	      	String msg = msgs.get(key);
+	  %>
+	  	  	<span class="col-md-12 alert alert-<%= key %>"><%= msg %></span>	    
+		  <% 
+		  } 
+		  %>	  
+	  <% 
+	  } 
+	  %>
+	</div>
 <div class="col-md-12">
 	<div class="panel panel-success">
     <div class="panel-heading">
@@ -50,7 +68,7 @@
     			<label class="control-label">Valor</label>
     			<div class="input-group">
         			<span class="input-group-addon">R$</span>
-        			<input type="text" name="value" id="value" data-thousands="." data-decimal="," class="form-control">
+        			<input type="text" name="value" id="value" data-thousands="." data-decimal="," class="form-control mask_money">
         		<span class="input-group-btn">
             		<button class="btn btn-primary" type="submit">Finalizar</button>
        		 	</span>
