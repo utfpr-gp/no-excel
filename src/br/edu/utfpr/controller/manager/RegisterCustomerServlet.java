@@ -48,6 +48,7 @@ public class RegisterCustomerServlet extends HttpServlet {
 		mapParams.put("password", Crypto.encrypt(request.getParameter("password")));
 		mapParams.put("colleger", request.getParameter("colleger"));
 		mapParams.put("balance", request.getParameter("balance"));
+		mapParams.put("email",request.getParameter("email"));
 		
 		result = verifyParameters(mapParams);		
 		CustomerService customerService = new CustomerService();
@@ -65,7 +66,8 @@ public class RegisterCustomerServlet extends HttpServlet {
 						mapParams.get("type"),
 						value,
 						mapParams.get("password"),
-						mapParams.get("colleger")						
+						mapParams.get("colleger"),
+						mapParams.get("email")
 					);
 				if(!customer.isUnique()){
 					result.put("Erro", "Cliente já existe");
@@ -126,7 +128,11 @@ public class RegisterCustomerServlet extends HttpServlet {
 				case "password":
 					if(entry.getValue().length() == 0)
 						result.put("Password", "Valor está em branco.");
-				break;				
+				break;
+				case "email":
+					if(entry.getValue().length() == 0)
+						result.put("Email", "Valor está em branco.");
+				break;
 			}
 		}		
 				

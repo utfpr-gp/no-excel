@@ -14,7 +14,7 @@ public class Transaction {
 	@GeneratedValue
 	private long id;
 	private Date date;
-	private BigDecimal value;
+	private long value;
 	private boolean operation;
 	
 	@ManyToOne
@@ -24,7 +24,7 @@ public class Transaction {
 		
 	}
 	
-	public Transaction(Date date, BigDecimal value, boolean operation, Customer customer) {
+	public Transaction(Date date, long value, boolean operation, Customer customer) {
 		this.date = date;
 		this.value = value;
 		this.operation = operation;
@@ -47,11 +47,11 @@ public class Transaction {
 		this.date = date;
 	}
 
-	public BigDecimal getValue() {
+	public long getValue() {
 		return value;
 	}
 
-	public void setValue(BigDecimal value) {
+	public void setValue(long value) {
 		this.value = value;
 	}
 

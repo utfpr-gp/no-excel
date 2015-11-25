@@ -19,18 +19,20 @@ public class Customer extends Person {
 	private Long value;
 	private String password;
 	private String colleger;
+	private String email;
 	
 	public Customer(){
 		
 	}
 	
-	public Customer(String name, String login, String type, Long value, String password, String colleger){
+	public Customer(String name, String login, String type, Long value, String password, String colleger, String email){
 		this.name = name;
 		this.login = login;
 		this.type = type;
 		this.value = value;
 		this.password = password;
 		this.colleger = colleger;
+		this.email = email;
 		this.role = Role.CLIENT;
 	}
 
@@ -90,6 +92,14 @@ public class Customer extends Person {
 		this.colleger = colleger;
 	}
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public boolean isUnique() {
 		CustomerService customer = new CustomerService();
 		if (customer.getByProperty("login", getLogin()) != null) {

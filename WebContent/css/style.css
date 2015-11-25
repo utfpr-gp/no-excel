@@ -67,18 +67,6 @@ html, body {
 	height: 57px;
 }
 
-/*For customer form*/
-.container .form-customer input {font-size: 25px;}
-.container .form-customer .ra {width: 15%;}
-.container .form-customer .name {width: 50%;}
-.container .form-customer .type-person {width: 20%;}
-.container .form-customer .type-person select {font-size: 25px;}
-.container .form-customer .value {width: 15%;}
-.container .form-customer .submit button {float: right; font-size: 20px;}
-.container .buttons {text-align: center;}
-.container .buttons button {font-size: 25px;}
-
-
 .navbar-noexcel{
 	background-color: #009688;
 	border-color:#009688;

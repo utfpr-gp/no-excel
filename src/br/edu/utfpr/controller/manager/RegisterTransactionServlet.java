@@ -49,7 +49,7 @@ public class RegisterTransactionServlet extends HttpServlet {
 		TransactionService service = new TransactionService();
 		CustomerService cs = new CustomerService();
 		Customer customer = cs.getById(customer_id);
-		BigDecimal value = BigDecimal.valueOf(Double.parseDouble((MoneyUtil.replaceMoney(request.getParameter("value")))));
+		long value = Long.parseLong(request.getParameter("value").replaceAll("[^\\d.-]", ""));
 		boolean operation = Boolean.parseBoolean(request.getParameter("operation"));
 				
 		Date data = new Date();
@@ -62,9 +62,10 @@ public class RegisterTransactionServlet extends HttpServlet {
 		if(checkBalance(customer, value)){
 			try {
 				service.save(transaction);
-				//sendMail("rogeriomiss@gmail.com", value.toString(), operacao);
 				
 				upadateBalance(customer, value, operation);
+				
+				sendMail(customer.getEmail(), value, operacao);
 				
 				messageMap.put("success", "Transação realizada com sucesso!");
 				request.setAttribute("msg", messageMap);
@@ -93,7 +94,7 @@ public class RegisterTransactionServlet extends HttpServlet {
 		}
 	}
 	
-	private void sendMail(String email, String valor, String operacao){
+	private void sendMail(String email, long valor, String operacao){
 		Properties props = new Properties();
         /** Parâmetros de conexão com servidor Gmail */
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -122,7 +123,7 @@ public class RegisterTransactionServlet extends HttpServlet {
 		
 			message.setRecipients(Message.RecipientType.TO, toUser);
 			message.setSubject("Comprovante Transação RU");//Assunto
-			message.setText("-----------Comprovante de "+operacao+"-----------\nFoi realizado um "+operacao+" de "+valor+" reais em sua conta\nEnviado por RU\n-----------Comprovante "+operacao+"-----------");
+			message.setText("-----------Comprovante de "+operacao+"-----------\nFoi realizado um "+operacao+" de "+MoneyUtil.formatMoney(valor)+" reais em sua conta\nEnviado por RU\n-----------Comprovante "+operacao+"-----------");
 			/**Método para enviar a mensagem criada*/
 			Transport.send(message);
 			System.out.println("Feito!!!");
@@ -132,31 +133,24 @@ public class RegisterTransactionServlet extends HttpServlet {
   
 	}
 
-	private boolean checkBalance(Customer customer, BigDecimal value){
-		System.out.println("\ncustomer -> "+customer.getValue()+"value -> \n"+MoneyUtil.convertTo(value));
-		if(customer.getValue() < MoneyUtil.convertTo(value)){
+	private boolean checkBalance(Customer customer, long value){
+		if(customer.getValue() < value){
 			return false;
 		}
 			
 		return true;
 	}
 
-	private void upadateBalance(Customer customer, BigDecimal value, boolean operation){
-		//if (operation == true){
-			BigDecimal balance = BigDecimal.valueOf(customer.getValue());
-			BigDecimal divisor = new BigDecimal("100");
-			balance = balance.divide(divisor);
-			balance = balance.add(value);
+	private void upadateBalance(Customer customer, long value, boolean operation){
+		long balance;
+		if (operation == true)
+			balance = customer.getValue() - value;
+		else
+			balance = customer.getValue() + value;
 			
-			//customer.setValue(Long.getLong(balance.toString()));
-			
-			//CustomerService c = new CustomerService();
-			
-			//c.update(customer);
-			System.out.println("Customer update - > " + Long.getLong(balance.toString()));
-			System.out.println("Saldo atualizado - > " + balance);
-		//} else {
-			
-		//}
+		
+		customer.setValue(balance);
+		CustomerService c = new CustomerService();
+		c.update(customer);
 	}
 }

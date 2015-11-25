@@ -17,8 +17,11 @@ public class MoneyUtil {
 	}
 	
 	public static String formatMoney(Long number){
-		NumberFormat n = NumberFormat.getCurrencyInstance(Locale.getDefault()); 
-		return n.format(number / 100);		
+		String number_f;
+		long real = number / 100;
+		long cents = number % 100;
+		
+		return real +"," +cents;
 	}
 	
 	public static String replaceMoney(String money){		
