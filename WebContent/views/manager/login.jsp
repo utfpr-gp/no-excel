@@ -66,7 +66,7 @@
 						</label>
 					</div>
 
-					<a href="${ctx}/css/style.css">
+					<a href="${ctx}/ForgotPasswordServlet">
 						Esqueci minha senha
 					</a>
 				</div>

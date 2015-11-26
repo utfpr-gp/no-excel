@@ -17,6 +17,9 @@ import br.edu.utfpr.model.service.UserService;
 import br.edu.utfpr.util.Crypto;
 import br.edu.utfpr.util.Role;
 
+/**
+ * http://localhost:8080/No-excel/CreateDatabaseServlet
+ */
 @WebServlet("/CreateDatabaseServlet")
 public class CreateDatabaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
