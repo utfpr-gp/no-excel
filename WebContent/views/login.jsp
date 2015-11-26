@@ -40,7 +40,7 @@
     	</c:if>
     </div>
 	<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-      	<h2 class="form-signin-heading text-center">Login no Sistema NoExcel - Cliente</h2>
+      	<h2 class="form-signin-heading text-center">Login no Sistema NoExcel - Cliente (LUCIAN GAYZINHO)</h2>
       	<div class="card-s card-signin">
         	<img class="img-circle profile-img" src="${ctx}/img/no-excel.png" alt="Noexcel">
         	<form class="form-signin" action="${ctx}/login" method="POST">
