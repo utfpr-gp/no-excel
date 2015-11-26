@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<c:set var="ctx" value="<%= request.getContextPath() %>" />
+<c:set var="ctx" value="<%=request.getContextPath()%>" />
 
 <link rel="icon" href="${ctx}/img/no-excel.png">
 
@@ -65,15 +65,19 @@
 							Continuar logado
 						</label>
 					</div>
+
+					<a href="${ctx}/css/style.css">
+						Esqueci minha senha
+					</a>
 				</div>
 			</form>
 		</div>
 	</div>
 	<!-- /container -->
-	<script src="<%= request.getContextPath() %>/js/jquery-1.11.2.min.js"></script>
-	<script src="<%= request.getContextPath() %>/js/bootstrap.min.js"></script>
-	<script src="<%= request.getContextPath() %>/js/ripples.min.js"></script>
-	<script src="<%= request.getContextPath() %>/js/material.min.js"></script>
-	<script src="<%= request.getContextPath() %>/js/app.js"></script>
+	<script src="<%=request.getContextPath()%>/js/jquery-1.11.2.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/ripples.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/material.min.js"></script>
+	<script src="<%=request.getContextPath()%>/js/app.js"></script>
 </body>
 </html>

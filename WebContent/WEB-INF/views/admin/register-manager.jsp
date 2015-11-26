@@ -79,6 +79,10 @@
 		    			<div class="form-group">
 		        			<input class="form-control" id="pswdInput" name="password" value="${user.getPassword()}" placeholder="Senha"  type="password">
 		    			</div>
+
+		          		<div class="form-group">
+		        			<input class="form-control" name="email" value="${user.getEmail()}" id="emailInput" placeholder="Email" type="email">
+		    			</div>
     				</div>
    				</div>
             
