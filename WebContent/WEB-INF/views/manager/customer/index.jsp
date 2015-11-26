@@ -15,7 +15,7 @@
 <title>Consultar Extrato - ${person.getName()}</title>
 </head>
 <body>
-<jsp:include page="../includes/nav_customer.jsp"/>
+<%-- <jsp:include page="../includes/nav_customer.jsp"/> --%>
 <div class="container">
 	<h3 class='text-center'>As últimas 30 transações de ${person.getName()}</h3>
 	<h2><span class="label label-success">Saldo Atual: R$: ${person.getValue()}</span></h2>
