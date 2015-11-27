@@ -18,7 +18,7 @@
 <jsp:include page="../includes/nav_customer.jsp"/>
 <div class="container">
 	<h3 class='text-center'>As últimas 30 transações de ${person.getName()}</h3>
-	<h2><span class="label label-success">Saldo Atual: R$: ${person.getReal()}</span></h2>
+	<h2><span class="label label-success">Saldo Atual: ${person.getReal()}</span></h2>
 	<table class="table table-striped table-hover ">
 	    <thead>
 	        <tr>
@@ -38,7 +38,7 @@
 		            <c:choose>
 					  <c:when test="${i.isOperation()}">
 					    <td>Crédito</td>
-					    <td><span class="label label-success"> R$: ${i.getReal()} </span></td>
+					    <td><span class="label label-success"> R$: ${i.getValue()} </span></td>
 					  </c:when>
 					  <c:otherwise>
 					    <td>Débito</td>

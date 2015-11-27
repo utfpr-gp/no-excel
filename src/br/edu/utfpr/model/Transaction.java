@@ -73,13 +73,5 @@ public class Transaction {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
-	//mostra a data no formato brasileiro
-		public String getReal(){
-			Locale br = new Locale("pt", "BR");
-			NumberFormat money = NumberFormat.getCurrencyInstance(br);
-			String real = money.format(value/100);
-			return real;
-		}
 
 }
