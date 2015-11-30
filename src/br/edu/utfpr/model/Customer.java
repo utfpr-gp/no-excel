@@ -1,6 +1,8 @@
 package br.edu.utfpr.model;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -112,5 +114,13 @@ public class Customer extends Person {
 		CustomerService customer = new CustomerService();
 		return customer.getByProperty("login", ra);
 	}
+	
+	//mostra a data no formato brasileiro
+		public String getReal(){
+			Locale br = new Locale("pt", "BR");
+			NumberFormat money = NumberFormat.getCurrencyInstance(br);
+			String real = money.format(value/100);
+			return real;
+		}
 
 }

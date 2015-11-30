@@ -68,7 +68,7 @@ public class LoginServlet extends HttpServlet {
 				}	
 				
 				//tempo da sessão é de 2 horas
-				request.getSession().setMaxInactiveInterval(2 * 60 * 60);
+				//request.getSession().setMaxInactiveInterval(-1);
 				request.getSession().setAttribute(Constants.PERSON_KEY, user);
 				
 				String address = "/WEB-INF/views" + role + "/index.jsp";				
