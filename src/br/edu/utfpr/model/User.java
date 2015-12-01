@@ -9,6 +9,7 @@ public class User extends Person {
 	private String username;
 	private String password;
 	private String email;
+	private String passwordForgotHash;
 	private long balance;
 
 	public User() {
@@ -47,6 +48,14 @@ public class User extends Person {
 
 	public void setEmail(String Email) {
 		this.email = email;
+	}
+
+	public String getPasswordForgotHash() {
+		return passwordForgotHash;
+	}
+
+	public void setPasswordForgotHash(String passwordForgotHash) {
+		this.passwordForgotHash = passwordForgotHash;
 	}
 
 	public boolean isValid() {
