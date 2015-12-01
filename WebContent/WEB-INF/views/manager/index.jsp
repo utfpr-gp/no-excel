@@ -1,6 +1,22 @@
+<%@page import="java.util.HashMap"%>
 <jsp:include page="../includes/header.jsp"/>
 
 <jsp:include page="../includes/nav_user.jsp"/>
+
+<div class="row">
+  <%	HashMap<String, String> msgs = (HashMap)request.getAttribute("msg");
+	  
+  	if(msgs != null){
+		  for(String key : msgs.keySet()){
+	      	String msg = msgs.get(key);		%>
+	  	  	<span class="col-md-12 alert alert-<%= key %>"><%= msg %></span>	    
+	<% 
+	} 
+ 	%>	  
+  <% 
+  } 
+  %>
+</div>
 
 <form method="post" action="<%= request.getContextPath() %>/manager/transaction">
 <div class="container col-md-12 row">
