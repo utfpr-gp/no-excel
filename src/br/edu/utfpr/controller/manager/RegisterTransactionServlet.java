@@ -59,7 +59,7 @@ public class RegisterTransactionServlet extends HttpServlet {
 		
 		HashMap<String, String> messageMap = new HashMap<String, String>();
 		
-		if(checkBalance(customer, value)){
+		if(checkBalance(customer, value, operation)){
 			try {
 				service.save(transaction);
 				
@@ -133,11 +133,11 @@ public class RegisterTransactionServlet extends HttpServlet {
   
 	}
 
-	private boolean checkBalance(Customer customer, long value){
-		if(customer.getValue() < value){
-			return false;
-		}
-			
+	private boolean checkBalance(Customer customer, long value, boolean operation){
+		if(operation == false) return true;
+	
+		if(customer.getValue() < value) return false;
+
 		return true;
 	}
 

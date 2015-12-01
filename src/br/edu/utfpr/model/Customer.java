@@ -115,12 +115,10 @@ public class Customer extends Person {
 		return customer.getByProperty("login", ra);
 	}
 	
-	//mostra a data no formato brasileiro
-		public String getReal(){
-			Locale br = new Locale("pt", "BR");
-			NumberFormat money = NumberFormat.getCurrencyInstance(br);
-			String real = money.format(value/100);
-			return real;
-		}
-
+	public String getReal(){
+		Locale br = new Locale("pt", "BR");
+		NumberFormat money = NumberFormat.getCurrencyInstance(br);
+		String real = money.format(value/100);
+		return real;
+	}
 }
