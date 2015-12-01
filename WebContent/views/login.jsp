@@ -37,7 +37,17 @@
 		    <button type="button" class="close" data-dismiss="alert">×</button>
 		    <strong>Usuário/senha incorretos.</strong>	
     	</c:if>
+    	
+    	<c:forEach var="entry" items="${flashMessage}">
+			<div class="alert alert-dismissable alert-${flashType}">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+	    			<strong>${entry.key}</strong> ${entry.value}.
+			</div>
+		</c:forEach>
     </div>
+    
+    
+    
 	<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
       	<h2 class="form-signin-heading text-center">Login no Sistema NoExcel - Cliente</h2>
       	<div class="card-s card-signin">
@@ -56,6 +66,8 @@
 		          		<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
 					</div>		          	
 				</div>
+				
+				<a href="register.jsp">Registre-se</a>          
         	</form>
       	</div>
 	</div>
