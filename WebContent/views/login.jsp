@@ -16,7 +16,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="${ctx}/css/bootstrap.min.css" rel="stylesheet">
-    
 		
     <link href="${ctx}/css/roboto.min.css" rel="stylesheet">
 	

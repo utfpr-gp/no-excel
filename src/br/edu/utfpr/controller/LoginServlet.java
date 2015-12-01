@@ -70,8 +70,7 @@ public class LoginServlet extends HttpServlet {
 			else{				
 				loginFail(request, response, login);
 			}
-		}
-		else{			
+		} else {	
 			loginFail(request, response,login);   
 		}
 	}

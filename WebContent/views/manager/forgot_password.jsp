@@ -31,42 +31,34 @@
 <body class="hasGoogleVoiceExt">
 
 	<div class="container">
-		<c:if test="${error == true}">
+		<c:if test="${error_message.equals(\"\") == false}">
 			<div class="alert alert-dismissable alert-danger">
 				<button type="button" class="close" data-dismiss="alert">×</button>
-				<strong>Usuário/senha incorretos.</strong>
+				<strong>${error_message}</strong>
 		</c:if>
 	</div>
+
 	<div
 		class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-		<h2 class="form-signin-heading text-center">Login no Sistema
-			NoExcel - Gerência</h2>
+		<h2 class="form-signin-heading text-center">Esqueci minha senha</h2>
 		<div class="card-s card-signin">
 			<img class="img-circle profile-img" src="${ctx}/img/no-excel.png"
 				alt="Noexcel">
-			<form class="form-signin" action="${ctx}/manager/login" method="POST">
+			<form class="form-signin" action="${ctx}/ForgotPasswordServlet"
+				method="POST">
 				<div class="form-control-wrapper">
 					<div class="form-group">
-						<input class="form-control" id="username" placeholder="Usuário"
-							type="text" name="username">
+						<input class="form-control" id="email" placeholder="Email"
+							type="text" name="email">
 					</div>
 
 					<div class="form-group">
-						<input class="form-control" id="password" placeholder="Senha"
-							type="password" name="password">
-					</div>
+						<button class="btn btn-lg btn-warning btn-block" type="submit">Enviar</button>
 
-					<div class="form-group">
-						<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+						<br /> <a href="${ctx}/views/manager/login.jsp"
+							class="btn btn-lg btn-block btn-default" type="submit">
+							Cancelar/Voltar </a>
 					</div>
-
-					<div class="togglebutton">
-						<label> <input type="checkbox" name="remind">
-							Continuar logado
-						</label>
-					</div>
-
-					<a href="${ctx}/ForgotPasswordServlet"> Esqueci minha senha </a>
 				</div>
 			</form>
 		</div>
