@@ -30,9 +30,10 @@ import br.edu.utfpr.util.Role;
 public class RegisterManagerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		setAllUsers(request);		
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		setAllUsers(request);
 		String address = "/WEB-INF/views/admin/register-manager.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
@@ -44,30 +45,33 @@ public class RegisterManagerServlet extends HttpServlet {
 	 * 
 	 * @param request
 	 */
-	private void setAllUsers(HttpServletRequest request){
+	private void setAllUsers(HttpServletRequest request) {
 		UserService userService = new UserService();
 		List<User> userList = userService.findAll();
 		List<User> managerList = new ArrayList<User>();
-		
-		//filtra apenas os usuários com papel de gerente
-		for(User user : userList){
-			if(user.getRole().equals(Role.MANAGER)){
+
+		// filtra apenas os usuários com papel de gerente
+		for (User user : userList) {
+			if (user.getRole().equals(Role.MANAGER)) {
 				managerList.add(user);
 			}
 		}
-		
+
 		request.setAttribute(Constants.MANAGER_LIST_KEY, managerList);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String name = request.getParameter("name");
 		String login = request.getParameter("login");
 		String password = Crypto.encrypt(request.getParameter("password"));
 		User user = new User(name, login, password, Role.MANAGER);
-		
+		user.setEmail(request.getParameter("email"));
+
 		/*
 		 * 
 		 * Verifica se o username já existe
@@ -77,21 +81,19 @@ public class RegisterManagerServlet extends HttpServlet {
 		User tmpUser = userService.getByProperty("username", login);
 
 		String err_msg = null;
-		if(tmpUser != null){
+		if (tmpUser != null) {
 			err_msg = "O nome de usuário especificado já existe!";
-		}
-		else if(!user.isValid()){
+		} else if (!user.isValid()) {
 			err_msg = "Todos os campos são obrigatórios.";
-		}else{			
+		} else {
 			userService.save(user);
 		}
 
 		HashMap<String, String> messageMap = new HashMap<String, String>();
-		if(err_msg != null){
+		if (err_msg != null) {
 			request.setAttribute("user", user);
 			messageMap.put("danger", err_msg);
-		}
-		else{			
+		} else {
 			messageMap.put("success", "Usuário cadastrado com sucesso");
 		}
 		request.setAttribute("msg", messageMap);

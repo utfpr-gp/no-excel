@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.User;
+
 import br.edu.utfpr.model.Customer;
 import br.edu.utfpr.model.service.CustomerService;
+import br.edu.utfpr.model.service.UserService;
 
 @WebServlet("/ForgotPasswordServlet")
 public class ForgotPasswordServlet extends HttpServlet {
@@ -41,12 +44,14 @@ public class ForgotPasswordServlet extends HttpServlet {
 		}
 
 		// Verificando se o usuário referente ao email existe.
-		CustomerService customerService = new CustomerService();
-		Customer customer = customerService.getByProperty("email", email);
-		if (customer == null) {
+		UserService userService = new UserService();
+		User user = (User) userService.getByProperty("email", email);
+		if (user == null) {
 			request.setAttribute("error_message", "O email informado não pertence a nenhum usuário.");
 			request.getRequestDispatcher("/views/manager/forgot_password.jsp").forward(request, response);
 		}
+		
+//		if (user.get)
 		
 
 		response.getWriter().println("ForgotPasswordServlet.doPost");
