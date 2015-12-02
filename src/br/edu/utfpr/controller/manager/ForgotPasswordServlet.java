@@ -1,24 +1,24 @@
 package br.edu.utfpr.controller.manager;
 
 import java.io.IOException;
+import java.util.UUID;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.User;
-
-import br.edu.utfpr.model.Customer;
-import br.edu.utfpr.model.service.CustomerService;
+import br.edu.utfpr.model.User;
 import br.edu.utfpr.model.service.UserService;
+import br.edu.utfpr.util.Email;
 
 @WebServlet("/ForgotPasswordServlet")
 public class ForgotPasswordServlet extends HttpServlet {
 
-	public ForgotPasswordServlet() {
-		super();
-	}
+	// public ForgotPasswordServlet() {
+	// super();
+	// }
 
 	/**
 	 * Requisições GET apenas renderizamos a visão <forgot_password>
@@ -35,7 +35,7 @@ public class ForgotPasswordServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		// Verificando se o usuário informou o email.
 		String email = request.getParameter("email");
 		if (email.equals("")) {
@@ -45,16 +45,21 @@ public class ForgotPasswordServlet extends HttpServlet {
 
 		// Verificando se o usuário referente ao email existe.
 		UserService userService = new UserService();
-		User user = (User) userService.getByProperty("email", email);
+		User user = userService.getByProperty("email", email);
 		if (user == null) {
 			request.setAttribute("error_message", "O email informado não pertence a nenhum usuário.");
 			request.getRequestDispatcher("/views/manager/forgot_password.jsp").forward(request, response);
 		}
-		
-//		if (user.get)
-		
 
-		response.getWriter().println("ForgotPasswordServlet.doPost");
+		// Fornecendo hash caso o usuário ainda não possua.
+		String passwordForgotHash = user.getPasswordForgotHash();
+		if (passwordForgotHash == null || passwordForgotHash.equals("")) {
+			passwordForgotHash = UUID.randomUUID().toString();
+		}
+
+		// Enviando email com as instruções para alterar a senha.
+		Email.send(email, "[Esqueci minha senha]", "Para alterar sua senha clique no link a seguir: " + passwordForgotHash);
+		response.getWriter().println("code -> " + passwordForgotHash);
 	}
 
 }
