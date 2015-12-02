@@ -37,7 +37,7 @@
 				<strong>${error_message}</strong>
 			</div>
 		</c:if>
-		
+
 		<c:if test="${success_message.equals(\"\") == false}">
 			<div class="alert alert-dismissable alert-success">
 				<button type="button" class="close" data-dismiss="alert">×</button>
@@ -48,20 +48,29 @@
 
 	<div
 		class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-		<h2 class="form-signin-heading text-center">Esqueci minha senha</h2>
+		<h2 class="form-signin-heading text-center">Alterar minha senha</h2>
 		<div class="card-s card-signin">
 			<img class="img-circle profile-img" src="${ctx}/img/no-excel.png"
 				alt="Noexcel">
-			<form class="form-signin" action="${ctx}/ForgotPasswordServlet"
+
+			<p>
+				Olá <b>${user.getEmail()}</b>, altere sua senha preenchendo o campo
+				abaixo.
+			</p>
+
+			<form class="form-signin" action="${ctx}/EditPasswordServlet"
 				method="POST">
+
+				<input type="hidden" name="passwordForgotHash" value="${user.getPasswordForgotHash()}" />
+
 				<div class="form-control-wrapper">
 					<div class="form-group">
-						<input class="form-control" id="email" placeholder="Email"
-							type="text" name="email">
+						<input class="form-control" id="senha" placeholder="Nova Senha"
+							type="password" name="password" />
 					</div>
 
 					<div class="form-group">
-						<button class="btn btn-lg btn-warning btn-block" type="submit">Enviar</button>
+						<button class="btn btn-lg btn-warning btn-block" type="submit">Salvar</button>
 
 						<br /> <a href="${ctx}/views/manager/login.jsp"
 							class="btn btn-lg btn-block btn-default" type="submit">

@@ -35,8 +35,17 @@
 			<div class="alert alert-dismissable alert-danger">
 				<button type="button" class="close" data-dismiss="alert">×</button>
 				<strong>Usuário/senha incorretos.</strong>
+			</div>
+		</c:if>
+
+		<c:if test="${success_message.equals(\"\") == false}">
+			<div class="alert alert-dismissable alert-success">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<strong>${success_message}</strong>
+			</div>
 		</c:if>
 	</div>
+
 	<div
 		class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 		<h2 class="form-signin-heading text-center">Login no Sistema

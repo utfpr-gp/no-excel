@@ -12,13 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import br.edu.utfpr.model.User;
 import br.edu.utfpr.model.service.UserService;
 import br.edu.utfpr.util.Email;
+import br.edu.utfpr.util.Route;
 
 @WebServlet("/ForgotPasswordServlet")
 public class ForgotPasswordServlet extends HttpServlet {
-
-	// public ForgotPasswordServlet() {
-	// super();
-	// }
 
 	/**
 	 * Requisições GET apenas renderizamos a visão <forgot_password>
@@ -55,11 +52,17 @@ public class ForgotPasswordServlet extends HttpServlet {
 		String passwordForgotHash = user.getPasswordForgotHash();
 		if (passwordForgotHash == null || passwordForgotHash.equals("")) {
 			passwordForgotHash = UUID.randomUUID().toString();
+
+			// Salvando usuário com a nova hash.
+			user.setPasswordForgotHash(passwordForgotHash);
+			userService.update(user);
 		}
 
 		// Enviando email com as instruções para alterar a senha.
-		Email.send(email, "[Esqueci minha senha]", "Para alterar sua senha clique no link a seguir: " + passwordForgotHash);
-		response.getWriter().println("code -> " + passwordForgotHash);
+		Email.send(email, "[Esqueci minha senha]", "Para alterar sua senha clique no link a seguir: " + Route.getProjectUrl(request) + "EditPasswordServlet?hash=" + passwordForgotHash);
+
+		request.setAttribute("success_message", "Enviamos um email com as intruções para alterar a senha.");
+		request.getRequestDispatcher("/views/manager/forgot_password.jsp").forward(request, response);
 	}
 
 }
