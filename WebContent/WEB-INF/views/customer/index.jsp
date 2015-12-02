@@ -12,13 +12,39 @@
 <link href="css/material.min.css" rel="stylesheet">   
    <!-- Custom styles for this template -->
 <link href="css/style.css" rel="stylesheet">
+
 <title>Consultar Extrato - ${person.getName()}</title>
+< script language="JavaScript" type="text/javascript">
+   function mascaraData(campoData){
+              var data = campoData.value;
+              if (data.length == 2){
+                  data = data + '/';
+                  document.forms[0].data.value = data;
+      return true;              
+              }
+              if (data.length == 5){
+                  data = data + '/';
+                  document.forms[0].data.value = data;
+                  return true;
+              }
+         }
+< /script>
 </head>
 <body>
 <jsp:include page="../includes/nav_customer.jsp"/>
 <div class="container">
 	<h3 class='text-center'>As últimas 30 transações de ${person.getName()}</h3>
 	<h2><span class="label label-success">Saldo Atual: ${person.getReal()}</span></h2>
+	
+	<div align="right">
+		<form method="post" action="<%= request.getContextPath() %>/customer">
+			<div class="form-group form-inline">
+			  De: <input type="date" name="beginDate" OnKeyUp="mascaraData(this);"id="beginDate" class="form-control">
+			   Até: <input type="date" name="endDate"OnKeyUp="mascaraData(this);" id="endDate" class="form-control">
+			   <button type="submit" class="btn btn-primary">Filtrar</button>
+			</div>
+		</form>
+	</div>
 	<table class="table table-striped table-hover ">
 	    <thead>
 	        <tr>

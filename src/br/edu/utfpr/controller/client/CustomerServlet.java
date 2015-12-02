@@ -2,6 +2,10 @@ package br.edu.utfpr.controller.client;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -22,6 +26,7 @@ import br.edu.utfpr.model.service.TransactionService;
 import br.edu.utfpr.model.service.UserService;
 import br.edu.utfpr.util.Constants;
 import br.edu.utfpr.util.Crypto;
+import br.edu.utfpr.util.MoneyUtil;
 
 /**
  * 
@@ -53,9 +58,13 @@ public class CustomerServlet extends HttpServlet {
 		}
 		else{
 			address = "/WEB-INF/views/customer/index.jsp";
+			request.getSession().setAttribute(Constants.PERSON_KEY, customer);
+			request.getSession().setMaxInactiveInterval(60*3600);
+			
 			
 			TransactionService transactionService = new TransactionService();
-			ArrayList<Transaction> transactionList = (ArrayList<Transaction>) transactionService.findAllById("customer_id", customer.getId());
+			ArrayList<Transaction> transactionList = (ArrayList<Transaction>) 
+					transactionService.findAllById("customer_id", customer.getId());
 
 			request.setAttribute("transactions", transactionList);
 		}	
@@ -65,4 +74,33 @@ public class CustomerServlet extends HttpServlet {
 	}
 	
 	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String beginDate = request.getParameter("beginDate");
+		String endDate = request.getParameter("endDate");
+		java.sql.Date end = null;  
+		java.sql.Date begin = null;  
+
+		
+		try {  
+            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+            begin = new java.sql.Date( ((java.util.Date)formatter.parse(beginDate)).getTime() ); 
+            end = new java.sql.Date( ((java.util.Date)formatter.parse(endDate)).getTime() );
+            
+            TransactionService transactionService = new TransactionService();
+            ArrayList<Transaction> transactionList = (ArrayList<Transaction>) 
+					transactionService.filterDates(begin, end);
+            
+            request.setAttribute("transactions", transactionList);
+           
+    	
+    		request.getRequestDispatcher("/WEB-INF/views/customer/index.jsp").
+    		forward(request, response);
+    		
+           
+        } catch (ParseException e) {              
+          System.out.println("errors");
+        }  
+        
+	}
 }
