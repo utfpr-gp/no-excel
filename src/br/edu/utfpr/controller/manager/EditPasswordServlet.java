@@ -25,18 +25,20 @@ public class EditPasswordServlet extends HttpServlet {
 		String hash = request.getParameter("hash");
 		if (hash == null || hash.equals("")) {
 			response.sendRedirect(Route.getProjectUrl(request) + "views/manager/login.jsp");
-		}
+		} else {
 
-		// Verificando se o usuário referente a hash existe.
-		UserService userService = new UserService();
-		User user = userService.getByProperty("passwordForgotHash", hash);
-		if (user == null) {
-			response.sendRedirect(Route.getProjectUrl(request) + "views/manager/login.jsp");
+			// Verificando se o usuário referente a hash existe.
+			UserService userService = new UserService();
+			User user = userService.getByProperty("passwordForgotHash", hash);
+			if (user == null) {
+				response.sendRedirect(Route.getProjectUrl(request) + "views/manager/login.jsp");
+			} else {
+
+				// Renderizando a visão para o usuário alterar a senha.
+				request.setAttribute("user", user);
+				request.getRequestDispatcher("/views/manager/edit_password.jsp").forward(request, response);
+			}
 		}
-		
-		// Renderizando a visão para o usuário alterar a senha.
-		request.setAttribute("user", user);
-		request.getRequestDispatcher("/views/manager/edit_password.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

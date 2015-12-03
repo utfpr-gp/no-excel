@@ -23,8 +23,8 @@ public class ForgotPasswordServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setAttribute("error_message", "");
-		request.getRequestDispatcher("/views/manager/forgot_password.jsp").forward(request, response);
+			request.setAttribute("error_message", "");
+			request.getRequestDispatcher("/views/manager/forgot_password.jsp").forward(request, response);
 	}
 
 	/**
@@ -59,7 +59,8 @@ public class ForgotPasswordServlet extends HttpServlet {
 		}
 
 		// Enviando email com as instruções para alterar a senha.
-		Email.send(email, "[Esqueci minha senha]", "Para alterar sua senha clique no link a seguir: " + Route.getProjectUrl(request) + "EditPasswordServlet?hash=" + passwordForgotHash);
+		Email.send(email, "[Esqueci minha senha]", "Para alterar sua senha clique no link a seguir: "
+				+ Route.getProjectUrl(request) + "EditPasswordServlet?hash=" + passwordForgotHash);
 
 		request.setAttribute("success_message", "Enviamos um email com as intruções para alterar a senha.");
 		request.getRequestDispatcher("/views/manager/forgot_password.jsp").forward(request, response);
