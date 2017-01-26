@@ -4,7 +4,7 @@
 
 O sistema foi inicialmente desenvolvido por duas turmas consecutivas do ano de 2015 da disciplina de PI3 do curso de Tecnologia em Sistemas para Internet da UTFPR de Guarapuava. 
 
-## Funcionalidades Principais
+## Principais Funcionalidades 
 + Autenticação e autorização de acesso a vários papéis (Administrador, Gerente e Cliente)
 + Operação de inserção de crédito à conta do cliente
 + Operação de débito do saldo como forma de cobrança das refeições
